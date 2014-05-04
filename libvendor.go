@@ -25,7 +25,15 @@ func init() {
 func main() {
 	flag.Parse()
 
-	fmt.Printf("Starting in %s\n\nYou need to: mv src _vendor, and make the changes below.\n\n", CWD)
+	fmt.Printf("Starting in %s\n\nYou need to: mv src _vendor, and make the changes below. "+
+		"In you main application, your need to prepend any imports to these packages with "+
+		"\"./_vendor/\"\n\n", CWD)
+
+	// check that SRCDIR exists, if not, exit.
+	if _, err := os.Stat(SRCDIR); os.IsNotExist(err) {
+		fmt.Println("No src dir found at " + SRCDIR)
+		os.Exit(1)
+	}
 	filepath.Walk(SRCDIR, ParseFile)
 }
 
