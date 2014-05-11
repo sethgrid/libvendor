@@ -1,3 +1,5 @@
+[update]: code that uses libvendor cannot be imported and used in another application. (sadpanda)
+
 libvendor
 =========
 
